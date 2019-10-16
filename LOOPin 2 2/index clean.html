@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>LOOPin</title>
+
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/css/style MAP.css"
+      media="screen"
+    />
+    <!-- REMOVING ARROWS FROM DROP MENIU -->
+
+    <style>
+      select{
+        text-indent: 0.01px;
+        text-overflow: " ";
+      }
+    </style>
+
+    <!-- MAIN FORNT---------------------------- -->
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
+
+    <!-- LOGO FONT-------------------------------- -->
+
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
+
+    <script type="text/javascript"></script>
+
+
+    <!------------------------ Added link to the jQuery library ------------>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  
+  </head>
+
+
+
+
+
+  <body>
+    <!------------------------------------ PAGE ONE -->
+
+    <!-- <header id="main-header"> -->
+      <div class="header">
+        <h1><strong>LOOP</strong></h1>
+        <h6>in</h6>
+        <img src="assets/images/Logo.png" alt="Logo Face"></img>
+
+
+<!-- ZZZZZZZZZZZZ POSITIONING------------------- -->
+<div id="index">
+        <!-- ----------------------LOG IN -->
+
+        <section id="babybox">
+
+              <a href="index.html" target="_blank">
+                <p>"LOG"</p></a>
+    
+        </section>
+
+
+
+      
+
+      </div>
+      <!--container-->
+    </header>
+
+    <!------------------------------------ BACKGROUND -->
+
+    <div class="container1">
+
+      <style>
+        /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+        #map {
+          height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        #floating-panel {
+          position: absolute;
+          top: 10px;
+          left: 25%;
+          z-index: 5;
+          background-color: #fff;
+          padding: 5px;
+          border: 1px solid #999;
+          text-align: center;
+          font-family: "Roboto", "sans-serif";
+          line-height: 30px;
+          padding-left: 10px;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="floating-panel">
+        <b>Mode of Travel: </b>
+        <select id="mode">
+          <option value="DRIVING">Driving</option>
+          <option value="WALKING">Walking</option>
+          <option value="BICYCLING">Bicycling</option>
+          <option value="TRANSIT">Transit</option>
+        </select>
+      </div>
+      <div id="map"></div>
+      <script type="text/javascript">
+        async function getCurrentLocation() {
+          var location;
+          navigator.geolocation.getCurrentPosition(function(response) {
+            location = {
+              lat: response.coords.latitude,
+              lng: response.coords.longitude
+            };
+            return location;
+          });
+        }
+        function initMap() {
+          var directionsRenderer = new google.maps.DirectionsRenderer();
+          var directionsService = new google.maps.DirectionsService();
+          var map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 14,
+            center: { lat: 37.77, lng: -122.447 }
+          });
+          directionsRenderer.setMap(map);
+          calculateAndDisplayRoute(directionsService, directionsRenderer);
+          document
+            .getElementById("mode")
+            .addEventListener("change", function() {
+              calculateAndDisplayRoute(directionsService, directionsRenderer);
+            });
+          console.log(location);
+          function calculateAndDisplayRoute(
+            directionsService,
+            directionsRenderer
+          ) {
+            var selectedMode = document.getElementById("mode").value;
+            var location;
+            navigator.geolocation.getCurrentPosition(function(response) {
+              originLocation = new google.maps.LatLng(
+                response.coords.latitude,
+                response.coords.longitude
+              );
+              directionsService.route(
+                {
+                  origin: originLocation, // Haight.
+                  destination: { lat: 37.768, lng: -122.511 }, // Ocean Beach.
+                  // Note that Javascript allows us to access the constant
+                  // using square brackets and a string value as its
+                  // "property."
+                  travelMode: google.maps.TravelMode[selectedMode]
+                },
+                function(response, status) {
+                  if (status == "OK") {
+                    directionsRenderer.setDirections(response);
+                  } else {
+                    window.alert(
+                      "Directions request failed due to " + status
+                    );
+                  }
+                }
+              );
+            });
+          }
+        }
+      </script>
+      <script
+        async
+        defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQdy96MsqHdo4Eu3SBrnkjyVmZRSXm4bM&callback=initMap"
+      ></script>
+
+      <!-- <h1>Add side selectin bar as buttons.</h1> -->
+
+
+
+
+        </div>     
+
+    </div>
+                  
+
+        
+    <!-- ?///////////////////////////////////////////// -->
+
+    <!-- /* --------------MODAL------------------ */ -->
+
+
+    
+
+
+
+
+<!-- /* -------------END OF MODAL------------ */ -->
+
+         
+  
+
+
+      
+
+    <!------------------------------------ HIDDEN SIDE BAR MENIU -->
+
+    <!-- <nav id="navbar">
+        <div class="container">
+
+                <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Book It</a></li>
+                        <li><a href="#">Map</a></li>
+                        <li><a href="#">Your Tickets</a></li>
+                        <li><a href="#">All classes</a></li>
+
+                        <li><a href="about.html" target="_blank"></a></li> -->
+    <!-- </ul>
+        
+        </div><container-->
+    <!-- </nav>navbar -->
+  </body>
+</html>
